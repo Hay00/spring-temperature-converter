@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @RestController
-@ImportResource("/integration/integration.xml")
 public class TemperatureConverterApplication {
 
     static ApplicationContext ctx;
@@ -24,13 +23,13 @@ public class TemperatureConverterApplication {
     @GetMapping("/convert")
     public String convert(@RequestParam(value = "temperature", required = true) Float temperature) {
         // Fahrenheit to Celsius
-        float celsius = ctx.getBean("toCelsius", TempConverter.class).fahrenheitToCelcius(temperature);
+        float celsius = ctx.getBean("toCelsius", TempConverter.class).fahrenheitToCelsius(temperature);
 
         // Fahrenheit to Kelvin
-        float kelvin = ctx.getBean("toKelvin", TempConverter.class).fahrenheitToCelcius(temperature);
+        float kelvin = ctx.getBean("toKelvin", TempConverter.class).fahrenheitToCelsius(temperature);
 
         // Return response
-        return String.format("celcius: %.2f\nkelvin: %.2f", celsius, kelvin);
+        return String.format("Celsius: %.2f\nKelvin: %.2f", celsius, kelvin);
     }
 
 }

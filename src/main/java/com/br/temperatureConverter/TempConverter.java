@@ -11,7 +11,7 @@ package com.br.temperatureConverter;
  */
 public interface TempConverter {
 
-    float fahrenheitToCelcius(float fahren);
+    float fahrenheitToCelsius(float fahren);
 
     float fahrenheitToKelvin(float fahren);
 
