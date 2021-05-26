@@ -1,27 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:int="http://www.springframework.org/schema/integration"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:int="http://www.springframework.org/schema/integration" xsi:schemaLocation="http://www.springframework.org/schema/beans
            https://www.springframework.org/schema/beans/spring-beans.xsd
            http://www.springframework.org/schema/integration
            https://www.springframework.org/schema/integration/spring-integration.xsd">
 
 
-    <int:gateway id="toCelsius"
-                 service-interface="com.br.temperatureConverter.TempConverter"
-                 default-request-channel="toCelciusExpression"/>
-    
-    <int:gateway id="toKelvin"
-                 service-interface="com.br.temperatureConverter.TempConverter"
-                 default-request-channel="toKelvinExpression"/>
 
-    <int:service-activator id="formulaCelsius"
-                           input-channel="toCelciusExpression"
-                           expression="(payload - 32) / 9 * 5"/>
-    
-    <int:service-activator id="formulaKelvin"
-                           input-channel="toKelvinExpression"
-                           expression="(payload - 32) * 5 / 9 + 273 "/>
+       <int:gateway id="toCelsius" service-interface="com.br.temperatureConverter.TempConverter" default-request-channel="toCelciusExpression" />
+       <int:service-activator id="formulaCelsius" input-channel="toCelciusExpression" expression="payload - 273.15" />
 
 </beans>
